@@ -1,0 +1,540 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Little Sorry 💗</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg,#fff1f5,#f8dfe9,#fff5f8);
+    font-family: 'DM Sans', sans-serif;
+    color: #634654;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 850px;
+    min-height: 600px;
+    background: rgba(255,255,255,0.65);
+    border: 1px solid white;
+    border-radius: 25px;
+    box-shadow: 0 15px 50px rgba(170,100,130,0.12);
+    overflow: hidden;
+}
+
+.screen {
+    display: none;
+    min-height: 600px;
+    padding: 55px 35px;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: appear 0.7s ease;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes appear {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h1 {
+    font-family: 'Playfair Display',serif;
+    font-size: clamp(38px,7vw,65px);
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+h1 span, .section-heading span {
+    color: #d887a5;
+}
+
+.top-text {
+    color: #bd8198;
+    font-size: 11px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+.heart {
+    color: #d887a5;
+    font-size: 55px;
+    margin-bottom: 25px;
+    animation: beat 2s infinite;
+}
+
+@keyframes beat {
+    50% { transform: scale(1.15); }
+}
+
+.description {
+    max-width: 430px;
+    color: #947582;
+    font-size: 14px;
+    line-height: 1.9;
+    margin: 10px 0 30px;
+}
+
+button {
+    background: #dc91ad;
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+    box-shadow: 0 7px 20px #dc91ad35;
+}
+
+button:hover {
+    background: #c87595;
+    transform: translateY(-3px);
+}
+
+.bottom-text {
+    font-size: 11px;
+    color: #bc94a3;
+    margin-top: 50px;
+    letter-spacing: 1px;
+}
+
+/* Letter */
+
+.letter-card {
+    background: #fffafd;
+    border: 1px solid #f4dce5;
+    border-radius: 18px;
+    max-width: 530px;
+    width: 100%;
+    padding: 40px;
+    box-shadow: 0 12px 35px #aa678014;
+    margin-bottom: 30px;
+}
+
+.letter-card h2 {
+    font-family: 'Playfair Display',serif;
+    font-size: 36px;
+}
+
+.line {
+    height: 2px;
+    width: 45px;
+    background: #e5a4bb;
+    margin: 18px auto 25px;
+}
+
+.letter-text {
+    font-size: 14px;
+    line-height: 2;
+    color: #896b79;
+    text-align: left;
+    min-height: 180px;
+    white-space: pre-line;
+}
+
+.signature {
+    font-family: 'Playfair Display',serif;
+    font-style: italic;
+    color: #d887a5;
+    margin-top: 20px;
+}
+
+/* Cards */
+
+.section-heading {
+    font-family: 'Playfair Display',serif;
+    font-size: 39px;
+    line-height: 1.3;
+}
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 15px;
+    width: 100%;
+    max-width: 700px;
+    margin: 25px 0 35px;
+}
+
+.note-card {
+    height: 190px;
+    position: relative;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    inset: 0;
+    padding: 18px;
+    background: #fffafd;
+    border: 1px solid #f2d9e3;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transition: transform 0.6s;
+}
+
+.card-front span {
+    color: #d887a5;
+    margin-bottom: 15px;
+    font-size: 12px;
+}
+
+.card-front h3 {
+    font-family: 'Playfair Display',serif;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.card-front p {
+    font-size: 11px;
+    color: #bc8a9d;
+}
+
+.card-back {
+    transform: rotateY(180deg);
+    background: #fcebf1;
+}
+
+.card-back p {
+    font-size: 13px;
+    line-height: 1.8;
+    color: #815a6b;
+}
+
+.note-card.flipped .card-front {
+    transform: rotateY(180deg);
+}
+
+.note-card.flipped .card-back {
+    transform: rotateY(360deg);
+}
+
+/* Final */
+
+.final-message {
+    font-family: 'Playfair Display',serif;
+    font-size: 17px;
+    line-height: 1.8;
+    max-width: 420px;
+    color: #916e7d;
+    margin-bottom: 30px;
+}
+
+.final-line {
+    height: 2px;
+    width: 50px;
+    background: #d887a5;
+    margin: 10px auto 25px;
+}
+
+@media(max-width:600px) {
+    body { padding: 10px; }
+
+    .screen {
+        padding: 40px 20px;
+        min-height: 570px;
+    }
+
+    .container { min-height: 570px; }
+
+    .letter-card { padding: 25px 20px; }
+
+    .cards {
+        grid-template-columns: 1fr;
+        max-width: 350px;
+    }
+
+    .note-card { height: 145px; }
+
+    .section-heading { font-size: 33px; }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- SCREEN 1 -->
+
+<section class="screen active" id="welcome">
+
+    <div class="heart">♡</div>
+
+    <p class="top-text">A LITTLE SOMETHING FOR YOU</p>
+
+    <h1>I Have Something<br>
+    <span>To Say...</span></h1>
+
+    <p class="description">
+        I hope you'll read this till the end.
+        There is something I want you to know.
+    </p>
+
+    <button onclick="openMessage()">
+        Open My Message ♡
+    </button>
+
+    <div class="bottom-text">Made with sincerity ♡</div>
+
+</section>
+
+
+<!-- SCREEN 2 -->
+
+<section class="screen" id="apology">
+
+    <p class="top-text">A MESSAGE FROM MY HEART</p>
+
+    <div class="letter-card">
+
+        <div class="heart">♡</div>
+
+        <h2>I'm Sorry</h2>
+
+        <div class="line"></div>
+
+        <p class="letter-text" id="typingText"></p>
+
+        <p class="signature">With all my sincerity, ♡</p>
+
+    </div>
+
+    <button onclick="showNotes()">Continue →</button>
+
+</section>
+
+
+<!-- SCREEN 3 -->
+
+<section class="screen" id="notes">
+
+    <p class="top-text">JUST A FEW THINGS</p>
+
+    <h2 class="section-heading">
+        Things I Want<br>
+        <span>To Tell You</span>
+    </h2>
+
+    <p class="description">
+        There are a few things I never want you to misunderstand.
+    </p>
+
+    <div class="cards">
+
+        <div class="note-card" onclick="flipCard(this)">
+            <div class="card-front">
+                <span>01</span>
+                <h3>Do You Know?</h3>
+                <p>Tap to open ♡</p>
+            </div>
+            <div class="card-back">
+                <p>You matter more than you probably realize. I genuinely value you.</p>
+            </div>
+        </div>
+
+        <div class="note-card" onclick="flipCard(this)">
+            <div class="card-front">
+                <span>02</span>
+                <h3>One Thing I Regret</h3>
+                <p>Tap to open ♡</p>
+            </div>
+            <div class="card-back">
+                <p>I regret the moments when I failed to keep you happy and when you got hurt because of me.</p>
+            </div>
+        </div>
+
+        <div class="note-card" onclick="flipCard(this)">
+            <div class="card-front">
+                <span>03</span>
+                <h3>A Promise</h3>
+                <p>Tap to open ♡</p>
+            </div>
+            <div class="card-back">
+                <p>I'll try to listen better, understand more and become better and make sure that this will not happen again.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <button onclick="showFinal()">One Last Thing ♡</button>
+
+</section>
+
+
+<!-- SCREEN 4 -->
+
+<section class="screen" id="final">
+
+    <div class="heart">♡</div>
+
+    <p class="top-text">FROM THE BOTTOM OF MY HEART</p>
+
+    <h1>That's All I<br>
+    Wanted <span>To Say.</span></h1>
+
+    <p class="description">
+        I hope someday we can smile about everything again.
+        Until then, please know that my apology is genuine.
+    </p>
+
+    <div class="final-line"></div>
+
+    <p class="final-message">
+        Some feelings are difficult to put into words.
+    </p>
+
+    <button onclick="restart()">Read Again ↻</button>
+
+    <div class="bottom-text">A little message, just for you ♡</div>
+
+</section>
+
+</div>
+
+
+<script>
+
+// Apology message
+
+const apologyMessage = `I know things haven't been perfect, and I know I have hurt you.
+
+I just want you to know that I'm genuinely sorry. Maybe some of my words or actions made things difficult.
+
+I never wanted to make you feel that way. I cannot change what happened, but I can learn from it and try to become better.
+
+I truly hope you know how much I value you.
+
+Again M really reallyyy sorryyy m purii koshish kru ga k duara esa na ho kbi bi naa ho lkn sach m meri esi koi intension nh th . mj pta k jb kisi ko fikr hoti wo tb hi baar baar puchta .bs wo us time situation kch esi th mj pta k m chirchira hua whaa but m again sorry dubara kbi bi nh hoga esaa. 
+
+Meri tbyt bs khrb thi kaafi din hogye abi bi h bs isi liye shi se time bi nh de pa rhaa.
+
+hn lkn mj ak shikayat bi h kal m n btaya k meri tbyt nh thk m w8 krta rha k ap puche gi q hua kese hua kya hua lkn apne nh pucha.
+
+Toooooo m sorrryyyy again veeeshhuuuuu dubara poni kbi ese nh kare gii maan jaee naa abbb ye ak chota sa wb page bnaya h ab pta nh thk h ya nh tbyt khrb h to hoskta shi se nh bna ho bht koshish ki th k best ho lkn ptaa nh ab.
+
+Tooooo ab apni poni ko maaf kr den naaa maan jaeee bimar h poni apkii...`;
+
+let typingTimer;
+
+
+// Change screens
+
+function changeScreen(id) {
+
+    document.querySelectorAll('.screen').forEach(screen => {
+        screen.classList.remove('active');
+    });
+
+    document.getElementById(id).classList.add('active');
+
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+
+}
+
+
+// Open apology message
+
+function openMessage() {
+
+    changeScreen('apology');
+
+    const text = document.getElementById('typingText');
+
+    text.textContent = '';
+
+    clearInterval(typingTimer);
+
+    let i = 0;
+
+    typingTimer = setInterval(() => {
+
+        text.textContent += apologyMessage[i];
+
+        i++;
+
+        if (i >= apologyMessage.length) {
+            clearInterval(typingTimer);
+        }
+
+    }, 28);
+
+}
+
+
+// Show cards
+
+function showNotes() {
+
+    clearInterval(typingTimer);
+
+    changeScreen('notes');
+
+}
+
+
+// Flip cards
+
+function flipCard(card) {
+
+    card.classList.toggle('flipped');
+
+}
+
+
+// Final screen
+
+function showFinal() {
+
+    changeScreen('final');
+
+}
+
+
+// Restart website
+
+function restart() {
+
+    document.querySelectorAll('.note-card').forEach(card => {
+        card.classList.remove('flipped');
+    });
+
+    changeScreen('welcome');
+
+}
+
+</script>
+
+</body>
+</html>
